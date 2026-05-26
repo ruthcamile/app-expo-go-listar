@@ -1,18 +1,18 @@
 import { useEffect, useState } from "react";
-import { FlatList, Text, View, StyleSheet, Image } from "react-native";
+import { FlatList, Text, View, StyleSheet } from "react-native";
 
 export default function App() {
-  // 1. Criando o "estado" para guardar nossos dado
   const [personagens, setPersonagens] = useState([]);
 
-  // 2. Buscando os dados assim que o App abre
   useEffect(() => {
     async function buscarPersonagens() {
       try {
+        // Consumindo a Jikan API buscando os personagens de One Piece (ID 21)
         const response = await fetch('https://api.jikan.moe/v4/anime/21/characters');
         const dados = await response.json();
         
-        // Pegando apenas os 20 primeiros personagens
+        // A Jikan API guarda a lista dentro da propriedade "data"
+        // O slice(0, 20) é só para pegar os 20 primeiros e não sobrecarregar a tela simples
         setPersonagens(dados.data.slice(0, 20));
       } catch (error) {
         console.error("Erro ao buscar dados: ", error);
@@ -20,32 +20,22 @@ export default function App() {
     }
     
     buscarPersonagens();
-  }, []); // Essa lista vazia [] significa "rode apenas uma vez quando iniciar"
+  }, []);
 
-  // 3. Montando o visual da tela
   return (
     <View style={styles.container}>
       <Text style={styles.titulo}>Personagens de One Piece</Text>
       
       <FlatList
         data={personagens}
+        // O ID único do personagem na Jikan API se chama "mal_id"
         keyExtractor={(item) => String(item.character.mal_id)}
         renderItem={({ item }) => (
-          
           <View style={styles.card}>
-            
-            {/* NOVO: Componente de Imagem buscando a URL direto da API */}
-            <Image 
-              source={{ uri: item.character.images.jpg.image_url }} 
-              style={styles.imagem} 
-            />
-            
-            {/* View para organizar os textos ao lado da imagem */}
-            <View style={styles.infoTexto}>
-              <Text style={styles.textoNome}>{item.character.name}</Text>
-              <Text style={styles.textoPapel}>{item.role}</Text>
-            </View>
-
+            {/* O nome fica dentro do objeto "character" */}
+            <Text style={styles.textoNome}>Nome: {item.character.name}</Text>
+            {/* O papel (ex: Main, Supporting) fica direto no item */}
+            <Text style={styles.textoPapel}>Papel na história: {item.role}</Text>
           </View>
         )}
       />
@@ -53,7 +43,6 @@ export default function App() {
   );
 }
 
-// 4. Estilizando tudo
 const styles = StyleSheet.create({
   container: {
     flex: 1,
@@ -66,12 +55,11 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     marginBottom: 20,
     textAlign: 'center',
-    color: '#e74c3c', 
+    color: '#e74c3c', // Um vermelho para combinar com a vibe do Luffy!
   },
   card: {
-    flexDirection: 'row', // Coloca imagem e texto lado a lado
     backgroundColor: '#fff',
-    padding: 10,
+    padding: 15,
     marginBottom: 10,
     borderRadius: 8,
     elevation: 2, 
@@ -79,22 +67,12 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.1,
     shadowRadius: 4,
     borderLeftWidth: 4,
-    borderLeftColor: '#f1c40f',
-    alignItems: 'center', // Alinha a imagem e o texto no centro do card
-  },
-  imagem: {
-    width: 60,
-    height: 60,
-    borderRadius: 30, // Deixa a imagem redonda
-    marginRight: 15,  // Dá um espaço entre a imagem e o texto
-  },
-  infoTexto: {
-    flex: 1, // Faz o texto ocupar o resto do espaço no card
+    borderLeftColor: '#f1c40f', // Um detalhe amarelo nos cards
   },
   textoNome: {
-    fontSize: 16,
+    fontSize: 18,
     fontWeight: 'bold',
-    marginBottom: 4,
+    marginBottom: 5,
   },
   textoPapel: {
     fontSize: 14,
