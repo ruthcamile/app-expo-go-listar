@@ -4,13 +4,14 @@ Fala! Esse aqui é um projetinho de estudo desenvolvido para praticar os conceit
 
 Nesse caso, usei a **Jikan API** (que pega dados do MyAnimeList) para listar os personagens de One Piece. 👒
 
-## 🚀 Tecnologias e Ferramentas
-- React Native
-- Expo
-- JavaScript
-- [Jikan API v4](https://docs.api.jikan.moe/) (Fonte dos dados)
+## Tecnologias e Ferramentas
 
-## 🧠 O que foi praticado?
+![React Native](https://img.shields.io/badge/React_Native-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
+![Expo](https://img.shields.io/badge/Expo-000020?style=for-the-badge&logo=expo&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+[![Jikan API v4](https://img.shields.io/badge/Jikan_API_v4-2E51A2?style=for-the-badge&logo=myanimelist&logoColor=white)](https://docs.api.jikan.moe/)
+
+## O que foi praticado?
 Como é um projeto focado em aprendizado, o código explora os seguintes conceitos:
 * **Gerenciamento de Estado:** Uso do hook `useState` para guardar a lista de personagens.
 * **Ciclo de Vida e Requisições Assíncronas:** Uso do `useEffect` com `fetch` para buscar os dados na API assim que o app é aberto.
@@ -18,15 +19,17 @@ Como é um projeto focado em aprendizado, o código explora os seguintes conceit
 * **Imagens da Web:** Uso do componente `<Image>` para carregar as fotos dos personagens direto das URLs da API.
 * **Estilização:** Flexbox e `StyleSheet` para criar os "cards" dos personagens.
 
-## 💻 Como rodar o projeto
+## Como rodar o projeto
 
 Se quiser testar na sua máquina, é super simples. Você só precisa ter o Node.js instalado.
 
 1. Instale as dependências do projeto:
-npm install
+
+``npm install``
 
 2. Inicie o servidor do Expo:
-npx expo start
+
+``npx expo start``
 
 3. Escaneie o QR Code com o aplicativo Expo Go no seu celular, ou aperte a para abrir no emulador de Android / i para o emulador de iOS.
 
