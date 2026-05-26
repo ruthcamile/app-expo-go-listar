@@ -33,4 +33,4 @@ Se quiser testar na sua máquina, é super simples. Você só precisa ter o Node
 
 3. Escaneie o QR Code com o aplicativo Expo Go no seu celular, ou aperte a para abrir no emulador de Android / i para o emulador de iOS.
 
-Feito com ☕ para praticar e evoluir nos estudos!
+Feito por Ruth e com ☕!
